@@ -1,25 +1,18 @@
-LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
+library ieee;
+use ieee.std_logic_1164.ALL;
  
  
-ENTITY test IS
-END test;
+entity test is
+end test;
  
-ARCHITECTURE behavior OF test IS 
-    COMPONENT Transceiver
-    PORT(
-         RXD : IN  std_logic;
-         DSR : IN  std_logic;
-         CTS : IN  std_logic;
-         DCD : IN  std_logic;
-         clk : IN  std_logic;
-         enable : IN  std_logic;
-         Data : IN  std_logic_vector(7 downto 0);
-         TXD : OUT  std_logic;
-         DTR : OUT  std_logic;
-         RTS : OUT  std_logic
-        );
-    END COMPONENT;
+architecture behavior of test is
+
+  component Transceiver is 
+      port ( RXD, DSR, CTS, DCD, clk, enable: in std_logic;
+             Data: in std_logic_vector(7 downto 0);
+             TXD: out std_logic := '1';
+             DTR, RTS: out std_logic);
+  end component;
     
 
    --Inputs
@@ -36,34 +29,44 @@ ARCHITECTURE behavior OF test IS
    signal DTR : std_logic;
    signal RTS : std_logic;
 	
-BEGIN
+  begin
  
-	-- Instantiate the Unit Under Test (UUT)
-   uut: Transceiver PORT MAP (
-          RXD => RXD,
-          DSR => DSR,
-          CTS => CTS,
-          DCD => DCD,
-          clk => clk,
-          enable => enable,
-          Data => Data,
-          TXD => TXD,
-          DTR => DTR,
-          RTS => RTS);
-process begin
-clk<='0';
-wait for 1 ns;
-clk<='1';
-wait for 1 ns;
-end process;
+	  -- Instantiate the Unit Under Test (UUT)
+    uut: Transceiver PORT MAP (
+        RXD => RXD,
+        DSR => DSR,
+        CTS => CTS,
+        DCD => DCD,
+        clk => clk,
+        enable => enable,
+        Data => Data,
+        TXD => TXD,
+        DTR => DTR,
+        RTS => RTS);
 
-process begin
-enable<='1';
-data<= x"4A";
-wait for 1 ns;
-Dsr<='1';
-wait for 2 ns;
-Cts<='1';
-wait;
-end process;
-END;
+    process 
+        begin
+
+        clk <= '0';
+        wait for 1 ns;
+
+        clk< = '1';
+        wait for 1 ns;
+
+    end process;
+
+    process 
+        begin
+
+        enable <= '1';
+        data <= x"4A";
+        wait for 1 ns;
+
+        Dsr<='1';
+        wait for 2 ns;
+
+        Cts<='1';
+        wait;
+
+    end process;
+end behavior;
