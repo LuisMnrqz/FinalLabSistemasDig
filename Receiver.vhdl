@@ -52,7 +52,7 @@ architecture behavioral of Receiver is
 
                     elsif (start = '1') and (incountR > "0000") then
                         protocol(to_integer(incountR)) <= RXD;
-                        incountR <= incountR + 1;
+                        incountR <= incountR - 1;
 
                     elsif incountR = "0000" then
                         start <= '0';
