@@ -23,12 +23,16 @@ wait until (clk'event and clk='1');
 -- la señal de enable indica si el cilente quiere que se haga comunicación, cuando se desactiva se finaliza la comunicación.
 if enable='1' then
 DTR<='1';
+elsif enable='0' then
+DTR<='0';
 else null;
 end if;
 
 --Ya que DCE nos indique que esta listo mandamos la peticion para enviar datos.
 if DSR='1' then
 RTS<='1';
+elsif DSR='0' then
+RTS<='0';
 else null;
 end if;
 
