@@ -50,7 +50,7 @@ architecture behavioral of Receiver is
                     protocol(to_integer(incountR)) <= RXD;
                     incountR <= incountR + 1;
 
-                    elsif (start = '1') and (incount < "1100") then
+                    elsif (start = '1') and (incountR < "1100") then
                         protocol(to_integer(incountR)) <= RXD;
                         incountR <= incountR + 1;
 
