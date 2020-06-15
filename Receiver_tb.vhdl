@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity Receiver_tb is
 end Receiver_tb;
 
-architecture arch of ent is
+architecture arch of Receiver_tb is
 
     component Receiver is
         port ( RXD, DSR, CTS, DCD, clk, enable: in std_logic;
