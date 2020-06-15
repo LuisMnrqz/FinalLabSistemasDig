@@ -11,7 +11,7 @@ end Receiver;
 
 architecture behavioral of Receiver is
 
-    signal incountR: unsigned(3 downto 0) := "0000";
+    signal incountR: unsigned(3 downto 0) := "1101";
     signal sRTS, ready_RTS, start: std_logic := '0';
     signal protocol: std_logic_vector(11 downto 0);
 
@@ -47,16 +47,16 @@ architecture behavioral of Receiver is
                 --Leer
                 if (RXD = '0') and (start = '0')then
                     start <= '1';
-                    protocol(to_integer(incountR)) <= RXD;
-                    incountR <= incountR + 1;
+                    protocol(to_integer(incountR - 1)) <= RXD;
+                    incountR <= incountR - 1;
 
-                    elsif (start = '1') and (incountR < "1100") then
+                    elsif (start = '1') and (incountR < "0000") then
                         protocol(to_integer(incountR)) <= RXD;
                         incountR <= incountR + 1;
 
-                    elsif incountR = "1100" then
+                    elsif incountR = "0000" then
                         start <= '0';
-                        incountR <= "0000";
+                        incountR <= "1101";
                 end if;
 
         end process;        
