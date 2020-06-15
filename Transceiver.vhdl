@@ -54,7 +54,7 @@ architecture Behavioral of Transceiver is
                 --Se envia el primer bit que es el de comienzo
                     if incount = "0000" then
                         TXD <= '0';
-                        
+
                         --Se envia los bits del Data
                         elsif incount > "0000" and incount < "1001" then
                             TXD <= Data(to_integer(i));
@@ -70,7 +70,7 @@ architecture Behavioral of Transceiver is
 
                     end if;
 
-                    incount <= incount+1;
+                    incount <= incount + 1;
 
                     elsif incount = "1100" then
                         TXD <= '1';
