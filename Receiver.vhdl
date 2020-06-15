@@ -56,7 +56,7 @@ architecture behavioral of Receiver is
 
                     elsif incountR = "1100" then
                         start <= '0';
-                        incountR <= '0000';
+                        incountR <= "0000";
                 end if;
 
         end process;        
