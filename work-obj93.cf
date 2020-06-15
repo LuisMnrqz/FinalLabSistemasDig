@@ -1,7 +1,0 @@
-v 4
-file . "Receiver.vhdl" "6f1c2bdd6965dd3760d9fd42dacfeba9a7d0c1c6" "20200615031159.434":
-  entity receiver at 1( 0) + 0 on 17;
-  architecture behavioral of receiver at 12( 298) + 0 on 18;
-file . "Receiver_tb.vhdl" "0148c0096f713315019c1210626c2168c0f083aa" "20200615031226.243":
-  entity receiver_tb at 1( 0) + 0 on 19;
-  architecture arch of receiver_tb at 8( 117) + 0 on 20;
