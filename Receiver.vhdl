@@ -53,14 +53,14 @@ architecture behavioral of Receiver is
                         incountR <= incountR - 1;
 
                         elsif (start = '1') and (incountR > "0000") then
-                            protocol(to_integer(incountR)) <= RXD;
+                            protocol(to_integer(incountR - 1)) <= RXD;
                             incountR <= incountR - 1;
 
                         elsif incountR = "0000" then
                             start <= '0';
                             incountR <= "1100"; --12
                     end if;
-                    
+
                 end if;
         end process;        
 
