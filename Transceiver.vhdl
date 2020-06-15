@@ -50,9 +50,11 @@ architecture Behavioral of Transceiver is
 
                 --como solo enviamos 12 bits el incount va a contar 12 numeros los cuales cada uno indicara que bit estamos mandando
                 if incount < "1100" then
+
                 --Se envia el primer bit que es el de comienzo
                     if incount = "0000" then
                         TXD <= '0';
+                        
                         --Se envia los bits del Data
                         elsif incount > "0000" and incount < "1001" then
                             TXD <= Data(to_integer(i));
